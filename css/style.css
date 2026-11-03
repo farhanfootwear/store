@@ -407,35 +407,6 @@ summary:focus-visible {
   gap: var(--space-2);
 }
 
-.category-filters {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.filter-button {
-  min-height: 38px;
-  padding: 0.5rem 0.95rem;
-  border: 1px solid transparent;
-  border-radius: 2px;
-  color: var(--color-muted);
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.84rem;
-  transition:
-    color 160ms ease,
-    background-color 160ms ease;
-}
-
-.filter-button:hover {
-  color: var(--color-ink);
-}
-
-.filter-button.is-active {
-  color: var(--color-white);
-  background: var(--color-ink);
-}
-
 .sort-control {
   display: flex;
   align-items: center;
@@ -537,15 +508,6 @@ summary:focus-visible {
   margin-top: 0.9rem;
 }
 
-.product-category {
-  margin: 0;
-  color: var(--color-accent);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .product-image-count {
   color: var(--color-muted);
   font-size: 0.7rem;
@@ -564,12 +526,6 @@ summary:focus-visible {
   color: var(--color-ink);
   font-size: 0.92rem;
   font-weight: 700;
-}
-
-.product-sizes {
-  margin: 0.55rem 0 0;
-  color: var(--color-muted);
-  font-size: 0.78rem;
 }
 
 .loading-state,
@@ -717,6 +673,144 @@ summary:focus-visible {
   color: var(--color-muted);
   font-size: 0.78rem;
   text-align: center;
+}
+
+.gallery-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.order-dialog {
+  width: min(680px, calc(100% - 32px));
+  max-height: min(90vh, 900px);
+  overflow-y: auto;
+}
+
+.order-dialog .gallery-header {
+  align-items: flex-start;
+}
+
+.order-dialog .eyebrow {
+  margin-bottom: 0.35rem;
+}
+
+.order-product {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.order-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  display: grid;
+  min-width: 0;
+  gap: 0.35rem;
+  color: var(--color-ink);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea,
+.order-result textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-small);
+  color: var(--color-ink);
+  background: var(--color-white);
+  font-size: 0.88rem;
+  font-weight: 400;
+}
+
+.form-field textarea,
+.order-result textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.address-fields {
+  min-width: 0;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-line);
+}
+
+.address-fields legend {
+  padding: 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.form-field-wide {
+  grid-column: 1 / -1;
+}
+
+.optional-label {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+.order-privacy {
+  margin: 1rem 0;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.order-submit {
+  width: 100%;
+}
+
+.order-result h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.order-result textarea {
+  min-height: 270px;
+  margin-top: 0.35rem;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.order-status {
+  min-height: 1.5em;
+  margin: 0.5rem 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.order-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.button-whatsapp {
+  color: var(--color-white);
+  background: #18875b;
+}
+
+.button-whatsapp:hover {
+  background: #116b47;
+}
+
+.button-quiet {
+  border-color: var(--color-line);
+  color: var(--color-ink);
+  background: transparent;
 }
 
 @keyframes rise-in {
@@ -867,14 +961,6 @@ summary:focus-visible {
     padding: 0.8rem 0 1rem;
   }
 
-  .category-filters {
-    width: 100%;
-  }
-
-  .filter-button {
-    flex: 1;
-  }
-
   .sort-control {
     width: 100%;
     justify-content: space-between;
@@ -918,6 +1004,19 @@ summary:focus-visible {
 
   .gallery-control:last-child {
     justify-self: end;
+  }
+
+  .order-fields {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .form-field-wide {
+    grid-column: auto;
+  }
+
+  .order-result-actions > * {
+    flex: 1 1 100%;
   }
 }
 

@@ -9,9 +9,7 @@
     {
       "id": "p001",
       "name": "New Balance Fuel Cell",
-      "type": "shoes",
       "price": 2399,
-      "sizes": [8, 9, 10],
       "image-id": ["nb-fuelcell"]
     }
   ]

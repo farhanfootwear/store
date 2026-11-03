@@ -9,7 +9,6 @@ const elements = {
   grid: document.querySelector("#product-grid"),
   search: document.querySelector("#product-search"),
   clearSearch: document.querySelector("#clear-search"),
-  categoryButtons: [...document.querySelectorAll("[data-category]")],
   sort: document.querySelector("#sort-products"),
   count: document.querySelector("#result-count"),
   loading: document.querySelector("#loading-state"),
@@ -27,17 +26,36 @@ const elements = {
   previousImage: document.querySelector("#previous-image"),
   nextImage: document.querySelector("#next-image"),
   closeGallery: document.querySelector("#close-gallery"),
+  createOrder: document.querySelector("#create-order"),
+  orderDialog: document.querySelector("#order-dialog"),
+  closeOrder: document.querySelector("#close-order"),
+  orderForm: document.querySelector("#order-form"),
+  orderProduct: document.querySelector("#order-product"),
+  orderResult: document.querySelector("#order-result"),
+  orderMessage: document.querySelector("#whatsapp-message"),
+  orderStatus: document.querySelector("#order-status"),
+  copyMessage: document.querySelector("#copy-message"),
+  openWhatsApp: document.querySelector("#open-whatsapp"),
+  editOrder: document.querySelector("#edit-order"),
 };
 
 let products = [];
-let activeCategory = "all";
 let activeGalleryProduct = null;
+let activeOrderProduct = null;
 let activeImageIndex = 0;
+let storeName = "";
+let storeContact = "";
+
+const priceFormatter = new Intl.NumberFormat("en-IN", {
+  style: "currency",
+  currency: "INR",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
 
 function renderCatalog() {
   const visibleProducts = getVisibleProducts(
     products,
-    activeCategory,
     elements.search.value,
     elements.sort.value,
   );
@@ -51,7 +69,7 @@ function renderCatalog() {
       "The collection is being prepared. Please check back soon.";
   } else if (visibleProducts.length === 0) {
     elements.empty.textContent =
-      "No footwear matches your search. Try another name or category.";
+      "No shoes match your search. Try another name.";
   }
 }
 
@@ -82,6 +100,96 @@ function moveGalleryImage(direction) {
   updateGalleryImage();
 }
 
+function openOrderForm() {
+  if (!activeGalleryProduct) return;
+  activeOrderProduct = activeGalleryProduct;
+  elements.dialog.close();
+  elements.orderForm.reset();
+  elements.orderForm.hidden = false;
+  elements.orderResult.hidden = true;
+  elements.orderStatus.textContent = "";
+  elements.openWhatsApp.hidden = true;
+  elements.orderProduct.textContent = `${activeOrderProduct.name} · ${priceFormatter.format(activeOrderProduct.price)}`;
+  elements.orderDialog.showModal();
+}
+
+function createOrderMessage(formData) {
+  const landmark = formData.get("landmark").trim();
+  const instructions = formData.get("instructions").trim();
+  const addressLines = [
+    `House / flat / building: ${formData.get("house").trim()}`,
+    `Street / area / locality: ${formData.get("street").trim()}`,
+    landmark ? `Landmark: ${landmark}` : "",
+    `City: ${formData.get("city").trim()}`,
+    `State: ${formData.get("state").trim()}`,
+    `PIN code: ${formData.get("pin").trim()}`,
+  ].filter(Boolean);
+
+  return [
+    `Hello ${storeName}, I would like to place an order request.`,
+    "",
+    `Product: ${activeOrderProduct.name}`,
+    `Product ID: ${activeOrderProduct.id}`,
+    `Price: ${priceFormatter.format(activeOrderProduct.price)}`,
+    `Shoe size (UK / India): ${formData.get("size")}`,
+    "",
+    "Customer details:",
+    `Name: ${formData.get("name").trim()}`,
+    `Phone: ${formData.get("phone").trim()}`,
+    "",
+    "Delivery address:",
+    ...addressLines,
+    "",
+    `Extra instructions: ${instructions || "None"}`,
+    "",
+    "Please confirm availability and delivery details. Thank you.",
+  ].join("\n");
+}
+
+function handleOrderSubmit(event) {
+  event.preventDefault();
+  if (!activeOrderProduct) return;
+
+  const phoneInput = elements.orderForm.elements.phone;
+  const phoneDigits = phoneInput.value.replace(/\D/g, "");
+  phoneInput.setCustomValidity(
+    phoneDigits.length < 7 || phoneDigits.length > 15
+      ? "Enter a phone number containing 7 to 15 digits."
+      : "",
+  );
+  if (!elements.orderForm.reportValidity()) return;
+
+  const formData = new FormData(elements.orderForm);
+  const message = createOrderMessage(formData);
+  elements.orderMessage.value = message;
+  elements.orderForm.hidden = true;
+  elements.orderResult.hidden = false;
+
+  const recipient = storeContact.replace(/\D/g, "");
+  if (recipient.length >= 8 && recipient.length <= 15) {
+    elements.openWhatsApp.href = `https://wa.me/${recipient}?text=${encodeURIComponent(message)}`;
+    elements.openWhatsApp.hidden = false;
+  } else {
+    elements.openWhatsApp.hidden = true;
+    elements.orderStatus.textContent =
+      "The store WhatsApp number is unavailable. You can still copy and share this message manually.";
+  }
+  elements.copyMessage.focus();
+}
+
+async function copyOrderMessage() {
+  try {
+    await navigator.clipboard.writeText(elements.orderMessage.value);
+    elements.orderStatus.textContent =
+      "Message copied. Open WhatsApp to send it to the store.";
+  } catch {
+    elements.orderMessage.focus();
+    elements.orderMessage.select();
+    elements.orderStatus.textContent =
+      "Clipboard access is unavailable. The message is selected; copy it to continue.";
+  }
+}
+
 async function loadCatalog() {
   elements.loading.hidden = false;
   elements.error.hidden = true;
@@ -104,6 +212,9 @@ async function loadCatalog() {
 
     const catalog = validateCatalog(data);
     products = catalog.products;
+    storeName = catalog.storeName;
+    storeContact =
+      typeof data.store.contact === "string" ? data.store.contact : "";
     document.querySelectorAll("[data-store-name]").forEach((element) => {
       element.textContent = catalog.storeName;
     });
@@ -136,18 +247,6 @@ elements.clearSearch.addEventListener("click", () => {
   elements.search.focus();
 });
 
-elements.categoryButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeCategory = button.dataset.category;
-    elements.categoryButtons.forEach((categoryButton) => {
-      const isActive = categoryButton === button;
-      categoryButton.classList.toggle("is-active", isActive);
-      categoryButton.setAttribute("aria-pressed", String(isActive));
-    });
-    renderCatalog();
-  });
-});
-
 elements.sort.addEventListener("change", renderCatalog);
 elements.retry.addEventListener("click", loadCatalog);
 elements.menuToggle.addEventListener("click", () => {
@@ -157,13 +256,8 @@ elements.menuToggle.addEventListener("click", () => {
   elements.navigation.classList.toggle("is-open", !isExpanded);
 });
 
-document.querySelectorAll("[data-nav-category]").forEach((link) => {
+elements.navigation.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
-    const category = link.dataset.navCategory;
-    const filterButton = elements.categoryButtons.find(
-      (button) => button.dataset.category === category,
-    );
-    filterButton?.click();
     elements.menuToggle.setAttribute("aria-expanded", "false");
     elements.navigation.classList.remove("is-open");
   });
@@ -172,6 +266,17 @@ document.querySelectorAll("[data-nav-category]").forEach((link) => {
 elements.previousImage.addEventListener("click", () => moveGalleryImage(-1));
 elements.nextImage.addEventListener("click", () => moveGalleryImage(1));
 elements.closeGallery.addEventListener("click", () => elements.dialog.close());
+elements.createOrder.addEventListener("click", openOrderForm);
+elements.closeOrder.addEventListener("click", () =>
+  elements.orderDialog.close(),
+);
+elements.orderForm.addEventListener("submit", handleOrderSubmit);
+elements.copyMessage.addEventListener("click", copyOrderMessage);
+elements.editOrder.addEventListener("click", () => {
+  elements.orderResult.hidden = true;
+  elements.orderForm.hidden = false;
+  elements.orderForm.elements.name.focus();
+});
 elements.dialog.addEventListener("click", (event) => {
   if (event.target === elements.dialog) elements.dialog.close();
 });

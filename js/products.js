@@ -58,24 +58,6 @@ export function validateCatalog(data) {
       fail("price must be a positive number; this record was skipped.");
       return;
     }
-    if (product.type !== "shoes" && product.type !== "slippers") {
-      fail(
-        'type must be either "shoes" or "slippers"; this record was skipped.',
-      );
-      return;
-    }
-    if (
-      !Array.isArray(product.sizes) ||
-      product.sizes.some(
-        (size) =>
-          typeof size !== "number" || !Number.isFinite(size) || size <= 0,
-      )
-    ) {
-      fail(
-        "sizes must be an array of positive numbers; this record was skipped.",
-      );
-      return;
-    }
     if (
       !Array.isArray(product["image-id"]) ||
       product["image-id"].length === 0 ||
@@ -93,9 +75,7 @@ export function validateCatalog(data) {
     products.push({
       id: product.id,
       name: product.name.trim(),
-      type: product.type,
       price: product.price,
-      sizes: [...new Set(product.sizes)],
       imageIds: [...product["image-id"]],
     });
   });
@@ -109,15 +89,11 @@ export function validateCatalog(data) {
   return { storeName: data.store.name.trim(), products, issues };
 }
 
-export function getVisibleProducts(products, category, searchTerm, sortOrder) {
+export function getVisibleProducts(products, searchTerm, sortOrder) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
-  const visibleProducts = products.filter((product) => {
-    const matchesCategory = category === "all" || product.type === category;
-    const matchesSearch = product.name
-      .toLocaleLowerCase()
-      .includes(normalizedSearch);
-    return matchesCategory && matchesSearch;
-  });
+  const visibleProducts = products.filter((product) =>
+    product.name.toLocaleLowerCase().includes(normalizedSearch),
+  );
 
   visibleProducts.sort((first, second) => {
     const comparison = first.name.localeCompare(second.name, undefined, {
@@ -145,16 +121,13 @@ export function renderProducts(products, grid, onOpenGallery) {
 
     const metadata = document.createElement("div");
     metadata.className = "product-meta";
-    const category = document.createElement("p");
-    category.className = "product-category";
-    category.textContent = product.type;
     const imageCount = document.createElement("span");
     imageCount.className = "product-image-count";
     imageCount.textContent =
       product.imageIds.length > 1
         ? `${product.imageIds.length} images`
         : "View image";
-    metadata.append(category, imageCount);
+    metadata.append(imageCount);
 
     const name = document.createElement("h3");
     name.className = "product-name";
@@ -164,13 +137,7 @@ export function renderProducts(products, grid, onOpenGallery) {
     price.className = "product-price";
     price.textContent = priceFormatter.format(product.price);
 
-    const sizes = document.createElement("p");
-    sizes.className = "product-sizes";
-    sizes.textContent = product.sizes.length
-      ? `Sizes ${product.sizes.join(", ")}`
-      : "Sizes currently unavailable";
-
-    card.append(imageButton, metadata, name, price, sizes);
+    card.append(imageButton, metadata, name, price);
     fragment.append(card);
   });
 
