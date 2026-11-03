@@ -6,7 +6,9 @@ import {
 import { createProductImage } from "./utils.js";
 
 const elements = {
+  catalog: document.querySelector("#catalog"),
   grid: document.querySelector("#product-grid"),
+  searchForm: document.querySelector("#search-form"),
   search: document.querySelector("#product-search"),
   clearSearch: document.querySelector("#clear-search"),
   sort: document.querySelector("#sort-products"),
@@ -51,6 +53,7 @@ let activeOrderProduct = null;
 let activeImageIndex = 0;
 let storeName = "";
 let storeContact = "";
+let previousSearchWasEmpty = true;
 
 const priceFormatter = new Intl.NumberFormat("en-IN", {
   style: "currency",
@@ -77,6 +80,16 @@ function renderCatalog() {
     elements.empty.textContent =
       "No shoes match your search. Try another name.";
   }
+}
+
+function scrollToCatalog() {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  elements.catalog.scrollIntoView({
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+    block: "start",
+  });
 }
 
 function renderStoreDetails(store) {
@@ -285,10 +298,21 @@ async function loadCatalog() {
   }
 }
 
-elements.search.addEventListener("input", renderCatalog);
+elements.search.addEventListener("input", () => {
+  renderCatalog();
+  const hasSearch = elements.search.value.trim().length > 0;
+  if (hasSearch && previousSearchWasEmpty) scrollToCatalog();
+  previousSearchWasEmpty = !hasSearch;
+});
+elements.searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  renderCatalog();
+  scrollToCatalog();
+});
 elements.clearSearch.addEventListener("click", () => {
   elements.search.value = "";
   renderCatalog();
+  previousSearchWasEmpty = true;
   elements.search.focus();
 });
 
