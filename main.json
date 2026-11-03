@@ -7,10 +7,22 @@
   },
   "products": [
     {
-      "id": "p001",
-      "name": "New Balance Fuel Cell",
+      "id": "p000",
+      "name": "New Balance Fuel Cell Orange",
       "price": 2399,
-      "image-id": ["nb-fuelcell"]
+      "image-id": ["nb-fuelcell-orange"]
+    },
+    {
+      "id": "p002",
+      "name": "New Balance Fuel Cell Green",
+      "price": 2399,
+      "image-id": ["nb-fuelcell-green"]
+    },
+    {
+      "id": "p003",
+      "name": "New Balance Fuel Cell White",
+      "price": 2399,
+      "image-id": ["nb-fuelcell-white"]
     }
   ]
 }
