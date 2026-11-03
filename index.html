@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta
+      name="description"
+      content="Browse a considered collection of shoes and slippers."
+    />
+    <title>Footwear collection</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#catalog">Skip to catalog</a>
+    <header class="site-header" id="home">
+      <div class="header-inner">
+        <a class="brand" href="#home" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">FF</span>
+          <span class="brand-name" data-store-name>Loading store...</span>
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span class="menu-toggle-label">Menu</span>
+        </button>
+        <nav
+          class="primary-navigation"
+          id="primary-navigation"
+          aria-label="Main navigation"
+        >
+          <a href="#home">Home</a>
+          <a href="#catalog" data-nav-category="shoes">Shoes</a>
+          <a href="#catalog" data-nav-category="slippers">Slippers</a>
+        </nav>
+        <form class="header-search" role="search" id="search-form">
+          <label class="visually-hidden" for="product-search"
+            >Search products</label
+          >
+          <input
+            id="product-search"
+            name="q"
+            type="search"
+            placeholder="Search the collection"
+            autocomplete="off"
+          />
+          <button
+            class="search-clear"
+            id="clear-search"
+            type="button"
+            aria-label="Clear search"
+            hidden
+          >
+            Clear
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A considered footwear collection</p>
+          <h1 id="hero-title">Farhan<br /><em>Footwear</em></h1>
+          <p class="hero-description">
+            Everyday shoes and slippers, selected for comfort, character, and
+            the miles in between.
+          </p>
+          <a class="button button-dark" href="#catalog"
+            >Explore the collection <span aria-hidden="true">&#8595;</span></a
+          >
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-art-note">
+            <span>GOOD FORM</span><span>01 / EVERYDAY</span>
+          </div>
+          <div class="hero-art-shape hero-art-shape-one"></div>
+          <div class="hero-art-shape hero-art-shape-two"></div>
+          <div class="hero-art-caption">Find your<br />everyday pair.</div>
+        </div>
+      </section>
+
+      <section
+        class="catalog-section"
+        id="catalog"
+        aria-labelledby="catalog-title"
+      >
+        <div class="catalog-heading">
+          <div>
+            <p class="eyebrow">The collection</p>
+            <h2 id="catalog-title">Footwear, thoughtfully found.</h2>
+          </div>
+          <p class="result-count" id="result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div
+            class="category-filters"
+            role="group"
+            aria-label="Filter by category"
+          >
+            <button
+              type="button"
+              class="filter-button is-active"
+              data-category="all"
+              aria-pressed="true"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              class="filter-button"
+              data-category="shoes"
+              aria-pressed="false"
+            >
+              Shoes
+            </button>
+            <button
+              type="button"
+              class="filter-button"
+              data-category="slippers"
+              aria-pressed="false"
+            >
+              Slippers
+            </button>
+          </div>
+          <div class="sort-control">
+            <label for="sort-products">Sort</label>
+            <select id="sort-products" name="sort">
+              <option value="name-asc">Name: A-Z</option>
+              <option value="name-desc">Name: Z-A</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="loading-state" id="loading-state" role="status">
+          <span class="loading-mark" aria-hidden="true"></span>
+          <p>Opening the collection...</p>
+        </div>
+        <section
+          class="error-state"
+          id="error-state"
+          aria-labelledby="error-title"
+          hidden
+        >
+          <p class="eyebrow">Collection unavailable</p>
+          <h3 id="error-title">We couldn't load the catalog.</h3>
+          <p id="error-message">Check your connection and try again.</p>
+          <button class="button button-dark" id="retry-load" type="button">
+            Try again
+          </button>
+        </section>
+        <p class="data-warning" id="data-warning" role="status" hidden></p>
+        <p class="empty-state" id="empty-state" hidden></p>
+        <div
+          class="product-grid"
+          id="product-grid"
+          aria-live="polite"
+          aria-busy="true"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-brand" href="#home" data-store-name>Loading store...</a>
+      <p>Footwear for everyday life.</p>
+      <a class="back-to-top" href="#home"
+        >Back to top <span aria-hidden="true">&#8593;</span></a
+      >
+    </footer>
+
+    <dialog
+      class="gallery-dialog"
+      id="gallery-dialog"
+      aria-labelledby="gallery-title"
+    >
+      <div class="gallery-header">
+        <h2 id="gallery-title"></h2>
+        <button
+          class="dialog-close"
+          id="close-gallery"
+          type="button"
+          aria-label="Close image gallery"
+        >
+          Close
+        </button>
+      </div>
+      <div class="gallery-viewer">
+        <button
+          class="gallery-control"
+          id="previous-image"
+          type="button"
+          aria-label="Previous image"
+        >
+          Previous
+        </button>
+        <div class="gallery-image" id="gallery-image"></div>
+        <button
+          class="gallery-control"
+          id="next-image"
+          type="button"
+          aria-label="Next image"
+        >
+          Next
+        </button>
+      </div>
+      <p class="gallery-count" id="gallery-count" aria-live="polite"></p>
+    </dialog>
+  </body>
+</html>
