@@ -37,6 +37,12 @@ const elements = {
   copyMessage: document.querySelector("#copy-message"),
   openWhatsApp: document.querySelector("#open-whatsapp"),
   editOrder: document.querySelector("#edit-order"),
+  storeAddressRow: document.querySelector("#store-address-row"),
+  storeAddress: document.querySelector("#store-address"),
+  storePhoneRow: document.querySelector("#store-phone-row"),
+  storePhone: document.querySelector("#store-phone"),
+  storeLocationRow: document.querySelector("#store-location-row"),
+  storeLocation: document.querySelector("#store-location"),
 };
 
 let products = [];
@@ -71,6 +77,35 @@ function renderCatalog() {
     elements.empty.textContent =
       "No shoes match your search. Try another name.";
   }
+}
+
+function renderStoreDetails(store) {
+  const address = typeof store.address === "string" ? store.address.trim() : "";
+  const phone = typeof store.contact === "string" ? store.contact.trim() : "";
+  const location =
+    typeof store.location === "string" ? store.location.trim() : "";
+
+  elements.storeAddress.textContent = address;
+  elements.storeAddressRow.hidden = !address;
+
+  const phoneHref = phone.replace(/[^\d+]/g, "");
+  if (phone && /\d/.test(phoneHref)) {
+    elements.storePhone.textContent = phone;
+    elements.storePhone.href = `tel:${phoneHref}`;
+    elements.storePhoneRow.hidden = false;
+  } else {
+    elements.storePhoneRow.hidden = true;
+  }
+
+  try {
+    const mapUrl = new URL(location);
+    if (mapUrl.protocol === "https:" || mapUrl.protocol === "http:") {
+      elements.storeLocation.href = mapUrl.href;
+      elements.storeLocationRow.hidden = false;
+      return;
+    }
+  } catch {}
+  elements.storeLocationRow.hidden = true;
 }
 
 function openGallery(product) {
@@ -226,6 +261,7 @@ async function loadCatalog() {
     storeName = catalog.storeName;
     storeContact =
       typeof data.store.contact === "string" ? data.store.contact : "";
+    renderStoreDetails(data.store);
     document.querySelectorAll("[data-store-name]").forEach((element) => {
       element.textContent = catalog.storeName;
     });
