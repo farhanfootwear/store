@@ -1,25 +1,28 @@
 {
   "store": {
     "name": "Farhan Footwear",
-    "address": "",
+    "address": "Lucknow Road Jagdishpur, Amethi 227809",
     "contact": "+918840707090",
-    "location": "https://goo.gl/maps/XRYUkxvGmSaWWGMu6"
+    "insta-id": "instafarhan73"
   },
+
   "products": [
     {
-      "id": "p000",
+      "id": 0,
       "name": "New Balance Fuel Cell Orange",
       "price": 2399,
       "image-id": ["nb-fuelcell-orange"]
     },
+
     {
-      "id": "p002",
+      "id": 1,
       "name": "New Balance Fuel Cell Green",
       "price": 2399,
       "image-id": ["nb-fuelcell-green"]
     },
+
     {
-      "id": "p003",
+      "id": 2,
       "name": "New Balance Fuel Cell White",
       "price": 2399,
       "image-id": ["nb-fuelcell-white"]

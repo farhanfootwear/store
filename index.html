@@ -3,172 +3,271 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="theme-color" content="#f6f1eb" />
     <meta
       name="description"
-      content="Browse a considered collection of shoes."
+      content="Farhan Footwear brings a refined collection of premium sneakers and everyday footwear."
     />
-    <title>Footwear collection</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./js/app.js"></script>
+    <title>Farhan Footwear</title>
+    <link rel="stylesheet" href="./css/premium.css" />
+    <script type="module" src="./js/premium-store.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#catalog">Skip to catalog</a>
-    <header class="site-header" id="home">
-      <div class="header-inner">
-        <a class="brand" href="#home" aria-label="Home">
-          <span class="brand-mark" aria-hidden="true">FF</span>
-          <span class="brand-name" data-store-name>Loading store...</span>
-        </a>
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="primary-navigation"
-        >
-          <span class="menu-toggle-label">Menu</span>
-        </button>
-        <nav
-          class="primary-navigation"
-          id="primary-navigation"
-          aria-label="Main navigation"
-        >
-          <a href="#home">Home</a>
-          <a href="#catalog">Collection</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <form class="header-search" role="search" id="search-form">
-          <label class="visually-hidden" for="product-search"
-            >Search products</label
-          >
-          <input
-            id="product-search"
-            name="q"
-            type="search"
-            placeholder="Search the collection"
-            autocomplete="off"
-          />
+
+    <div class="page-shell">
+      <header class="site-header" id="home">
+        <div class="header-inner">
+          <a class="brand" href="#home" aria-label="Home">
+            <span class="brand-mark" aria-hidden="true">FF</span>
+            <span class="brand-name" data-store-name>Farhan Footwear</span>
+          </a>
+
           <button
-            class="search-clear"
-            id="clear-search"
+            class="menu-toggle"
             type="button"
-            aria-label="Clear search"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+          >
+            <span>Menu</span>
+          </button>
+
+          <nav
+            class="primary-navigation"
+            id="primary-navigation"
+            aria-label="Main navigation"
+          >
+            <a href="#home">Home</a>
+            <a href="#search">Search</a>
+            <a href="#catalog">Shop</a>
+            <a href="#for-you">For You</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-pattern pattern-1" aria-hidden="true">
+            <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+              <path d="M38 462C144 334 188 278 258 180c39-55 88-95 168-136" />
+              <path d="M58 130c66 63 132 102 214 124 93 25 154 66 222 137" />
+              <path d="M110 530c40-41 90-73 135-83 77-18 122-58 182-133" />
+              <circle cx="154" cy="157" r="68" />
+              <circle cx="442" cy="382" r="86" />
+            </svg>
+          </div>
+
+          <div class="hero-copy">
+            <p class="hero-brand-name" data-store-name>Farhan Footwear</p>
+            <h1 id="hero-title">Move with <span>more</span> attitude.</h1>
+            <p class="hero-description">
+              Curated silhouettes for everyday motion, city miles, and standout
+              moments.
+            </p>
+
+            <div class="cta-row">
+              <a class="button button-primary" href="#catalog">Shop the drop</a>
+              <a
+                class="button button-secondary"
+                id="instagram-link"
+                href="#instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                >@instafarhan73</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="glass-panel">
+              <div class="glass-overlay" aria-hidden="true"></div>
+              <canvas id="glass-canvas" aria-hidden="true"></canvas>
+              <div class="glass-badges">
+                <span class="badge badge-soft">New season</span>
+                <span class="badge badge-strong">Made for motion</span>
+              </div>
+              <div class="hero-shot" id="hero-image-wrap">
+                <img
+                  id="hero-image"
+                  src="./images/nb-fuelcell-orange.jpg"
+                  alt="Farhan Footwear orange running shoe"
+                  width="920"
+                  height="760"
+                  fetchpriority="high"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="search-section" id="search" aria-labelledby="search-title">
+          <div class="search-section-copy">
+            <p class="eyebrow">Find your next pair</p>
+            <h2 id="search-title">Search the collection.</h2>
+          </div>
+          <form class="catalog-search" role="search" id="search-form">
+            <label class="visually-hidden" for="product-search">Search products</label>
+            <span class="search-icon" aria-hidden="true"></span>
+            <input
+              id="product-search"
+              name="q"
+              type="search"
+              placeholder="Try a style or product name"
+              autocomplete="off"
+            />
+            <button
+              class="search-clear"
+              id="clear-search"
+              type="button"
+              aria-label="Clear search"
+              hidden
+            >
+              Clear
+            </button>
+          </form>
+        </section>
+
+        <section
+          class="catalog-section"
+          id="catalog"
+          aria-labelledby="catalog-title"
+        >
+          <div class="catalog-header">
+            <div>
+              <p class="eyebrow">The collection</p>
+              <h2 id="catalog-title">Built for everyday motion.</h2>
+            </div>
+            <p class="result-count" id="result-count" aria-live="polite"></p>
+          </div>
+
+          <div class="catalog-toolbar">
+            <div class="sort-control">
+              <label for="sort-products">Sort</label>
+              <select id="sort-products" name="sort">
+                <option value="name-asc">Name: A–Z</option>
+                <option value="name-desc">Name: Z–A</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="loading-state" id="loading-state" role="status">
+            <span class="loading-mark" aria-hidden="true"></span>
+            <p>Opening the collection...</p>
+          </div>
+
+          <section
+            class="error-state"
+            id="error-state"
+            aria-labelledby="error-title"
             hidden
           >
-            Clear
-          </button>
-        </form>
-      </div>
-    </header>
+            <p class="eyebrow">Collection unavailable</p>
+            <h3 id="error-title">We couldn't load the catalog.</h3>
+            <p id="error-message">Check your connection and try again.</p>
+            <button class="button button-primary" id="retry-load" type="button">
+              Try again
+            </button>
+          </section>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">A considered footwear collection</p>
-          <h1 id="hero-title">Farhan<br /><em>Footwear</em></h1>
-          <p class="hero-description">
-            Everyday shoes, selected for comfort, character, and the miles in
-            between.
-          </p>
-          <a class="button button-dark" href="#catalog"
-            >Explore the collection <span aria-hidden="true">&#8595;</span></a
-          >
-        </div>
-        <div class="hero-art">
-          <img
-            class="hero-image"
-            src="./hero-image.jpg"
-            alt="Illustration of a man holding and pointing to a turquoise running shoe"
-            width="768"
-            height="768"
-            fetchpriority="high"
-          />
-        </div>
-      </section>
+          <p class="data-warning" id="data-warning" role="status" hidden></p>
+          <p class="empty-state" id="empty-state" hidden></p>
+          <div
+            class="product-grid"
+            id="product-grid"
+            aria-live="polite"
+            aria-busy="true"
+          ></div>
+        </section>
+
+        <section
+          class="feature-section"
+          id="for-you"
+          aria-labelledby="for-you-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">For you</p>
+              <h2 id="for-you-title">A curated finish for your next pair.</h2>
+            </div>
+            <button
+              class="button button-chip"
+              id="refresh-for-you"
+              type="button"
+            >
+              Shuffle picks
+            </button>
+          </div>
+          <div class="for-you-grid" id="for-you-grid"></div>
+        </section>
+
+        <section
+          class="social-section"
+          id="instagram"
+          aria-labelledby="instagram-title"
+        >
+          <div class="social-copy">
+            <p class="eyebrow">Instagram</p>
+            <h2 id="instagram-title">Follow the Farhan Footwear moodboard.</h2>
+            <p>
+              Sneaker culture, warm tones, and everyday pairs styled for real
+              life.
+            </p>
+            <a
+              class="button button-primary"
+              id="social-link"
+              href="https://instagram.com/instafarhan73"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@instafarhan73</a
+            >
+          </div>
+
+          <div class="social-image">
+            <img
+              src="./hero-image.jpg"
+              alt="Farhan Footwear campaign illustration featuring a runner's sneaker"
+              width="768"
+              height="768"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </section>
+      </main>
 
       <section
-        class="catalog-section"
-        id="catalog"
-        aria-labelledby="catalog-title"
+        class="store-contact"
+        id="contact"
+        aria-labelledby="contact-title"
       >
-        <div class="catalog-heading">
-          <div>
-            <p class="eyebrow">The collection</p>
-            <h2 id="catalog-title">Shoes, thoughtfully found.</h2>
-          </div>
-          <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="contact-intro">
+          <p class="eyebrow">Visit or get in touch</p>
+          <h2 id="contact-title">We’re here to help.</h2>
         </div>
 
-        <div class="catalog-toolbar">
-          <div class="sort-control">
-            <label for="sort-products">Sort</label>
-            <select id="sort-products" name="sort">
-              <option value="name-asc">Name: A-Z</option>
-              <option value="name-desc">Name: Z-A</option>
-            </select>
+        <dl class="contact-details">
+          <div class="contact-detail" id="store-address-row" hidden>
+            <dt>Store address</dt>
+            <dd id="store-address"></dd>
           </div>
-        </div>
-
-        <div class="loading-state" id="loading-state" role="status">
-          <span class="loading-mark" aria-hidden="true"></span>
-          <p>Opening the collection...</p>
-        </div>
-        <section
-          class="error-state"
-          id="error-state"
-          aria-labelledby="error-title"
-          hidden
-        >
-          <p class="eyebrow">Collection unavailable</p>
-          <h3 id="error-title">We couldn't load the catalog.</h3>
-          <p id="error-message">Check your connection and try again.</p>
-          <button class="button button-dark" id="retry-load" type="button">
-            Try again
-          </button>
-        </section>
-        <p class="data-warning" id="data-warning" role="status" hidden></p>
-        <p class="empty-state" id="empty-state" hidden></p>
-        <div
-          class="product-grid"
-          id="product-grid"
-          aria-live="polite"
-          aria-busy="true"
-        ></div>
+          <div class="contact-detail" id="store-phone-row" hidden>
+            <dt>Mobile</dt>
+            <dd><a id="store-phone"></a></dd>
+          </div>
+        </dl>
       </section>
-    </main>
 
-    <section class="store-contact" id="contact" aria-labelledby="contact-title">
-      <div class="contact-intro">
-        <p class="eyebrow">Visit or get in touch</p>
-        <h2 id="contact-title">We’re here to help.</h2>
-      </div>
-      <dl class="contact-details">
-        <div class="contact-detail" id="store-address-row" hidden>
-          <dt>Store address</dt>
-          <dd id="store-address"></dd>
-        </div>
-        <div class="contact-detail" id="store-phone-row" hidden>
-          <dt>Mobile</dt>
-          <dd><a id="store-phone"></a></dd>
-        </div>
-        <div class="contact-detail" id="store-location-row" hidden>
-          <dt>Location</dt>
-          <dd>
-            <a id="store-location" target="_blank" rel="noopener noreferrer">
-              Open map <span aria-hidden="true">&#8599;</span>
-            </a>
-          </dd>
-        </div>
-      </dl>
-    </section>
-
-    <footer class="site-footer">
-      <a class="footer-brand" href="#home" data-store-name>Loading store...</a>
-      <p>Footwear for everyday life.</p>
-      <a class="back-to-top" href="#home"
-        >Back to top <span aria-hidden="true">&#8593;</span></a
-      >
-    </footer>
+      <footer class="site-footer">
+        <a class="footer-brand" href="#home" data-store-name>Farhan Footwear</a>
+        <p>Footwear for everyday life.</p>
+        <a class="back-to-top" href="#home"
+          >Back to top <span aria-hidden="true">↑</span></a
+        >
+      </footer>
+    </div>
 
     <dialog
       class="gallery-dialog"
@@ -186,6 +285,7 @@
           Close
         </button>
       </div>
+
       <div class="gallery-viewer">
         <button
           class="gallery-control"
@@ -207,7 +307,7 @@
       </div>
       <p class="gallery-count" id="gallery-count" aria-live="polite"></p>
       <div class="gallery-actions">
-        <button class="button button-dark" id="create-order" type="button">
+        <button class="button button-primary" id="create-order" type="button">
           Create order request
         </button>
       </div>
@@ -247,6 +347,7 @@
               maxlength="100"
             />
           </label>
+
           <label class="form-field" for="customer-phone">
             Phone number
             <input
@@ -260,6 +361,7 @@
               required
             />
           </label>
+
           <label class="form-field" for="shoe-size">
             Shoe size (UK / India)
             <select id="shoe-size" name="size" required>
@@ -287,6 +389,7 @@
                 maxlength="120"
               />
             </label>
+
             <label class="form-field form-field-wide" for="address-street">
               Street / area / locality
               <input
@@ -298,6 +401,7 @@
                 maxlength="160"
               />
             </label>
+
             <label class="form-field form-field-wide" for="address-landmark">
               Landmark <span class="optional-label">Optional</span>
               <input
@@ -307,6 +411,7 @@
                 maxlength="120"
               />
             </label>
+
             <label class="form-field" for="address-city">
               City
               <input
@@ -318,6 +423,7 @@
                 maxlength="100"
               />
             </label>
+
             <label class="form-field" for="address-state">
               State
               <input
@@ -329,6 +435,7 @@
                 maxlength="100"
               />
             </label>
+
             <label class="form-field" for="address-pin">
               PIN code
               <input
@@ -355,11 +462,12 @@
             placeholder="Anything we should know about your delivery?"
           ></textarea>
         </label>
+
         <p class="order-privacy">
           Your details stay in this browser. Nothing is sent until you open
           WhatsApp and send the message.
         </p>
-        <button class="button button-dark order-submit" type="submit">
+        <button class="button button-primary order-submit" type="submit">
           Create WhatsApp message
         </button>
       </form>
@@ -381,8 +489,9 @@
           role="status"
           aria-live="polite"
         ></p>
+
         <div class="order-result-actions">
-          <button class="button button-dark" id="copy-message" type="button">
+          <button class="button button-primary" id="copy-message" type="button">
             Copy message
           </button>
           <a
