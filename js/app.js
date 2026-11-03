@@ -197,9 +197,20 @@ async function loadCatalog() {
   elements.grid.setAttribute("aria-busy", "true");
 
   try {
-    const response = await fetch("./main.json", { cache: "no-cache" });
-    if (!response.ok)
-      throw new Error(`The catalog request returned HTTP ${response.status}.`);
+    const catalogUrl = new URL("../main.json", import.meta.url);
+    let response;
+    try {
+      response = await fetch(catalogUrl, { cache: "no-cache" });
+    } catch (error) {
+      throw new Error(
+        `Could not fetch the catalog from ${catalogUrl.href}. ${error.message || "Check your network connection."}`,
+      );
+    }
+    if (!response.ok) {
+      throw new Error(
+        `The catalog request returned HTTP ${response.status} from ${response.url || catalogUrl.href}.`,
+      );
+    }
 
     let data;
     try {
@@ -230,9 +241,7 @@ async function loadCatalog() {
     elements.grid.replaceChildren();
     elements.count.textContent = "";
     elements.errorMessage.textContent =
-      error instanceof TypeError
-        ? "The catalog could not be reached. Use a local web server or check your network connection, then try again."
-        : error.message || "Check main.json and try again.";
+      error.message || "Check main.json and try again.";
     elements.error.hidden = false;
   } finally {
     elements.loading.hidden = true;
