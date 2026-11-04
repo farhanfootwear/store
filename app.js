@@ -528,7 +528,7 @@ async function loadCatalog() {
   elements.grid.setAttribute("aria-busy", "true");
 
   try {
-    const catalogUrl = new URL("../main.json", import.meta.url);
+    const catalogUrl = new URL("./main.json", import.meta.url);
     let response;
 
     try {

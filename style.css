@@ -37,8 +37,16 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(242, 123, 99, 0.18), transparent 27%),
-    radial-gradient(circle at bottom right, rgba(112, 45, 59, 0.12), transparent 28%),
+    radial-gradient(
+      circle at top left,
+      rgba(242, 123, 99, 0.18),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(112, 45, 59, 0.12),
+      transparent 28%
+    ),
     var(--paper);
   color: var(--ink);
   font-family: "Segoe UI", sans-serif;
@@ -238,7 +246,7 @@ textarea:focus-visible {
 }
 
 .menu-toggle {
-  display: none;
+  display: inline-flex;
 }
 
 .hero {
@@ -264,8 +272,16 @@ textarea:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(circle at 8% 15%, rgba(242, 123, 99, 0.16), transparent 35%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(235, 218, 216, 0.22));
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(242, 123, 99, 0.16),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52),
+      rgba(235, 218, 216, 0.22)
+    );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     0 18px 48px rgba(59, 32, 39, 0.08);
@@ -441,7 +457,11 @@ textarea:focus-visible {
   padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.44);
   border-radius: clamp(1.5rem, 2vw, 2.4rem);
-  background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.02)
+  );
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -449,7 +469,12 @@ textarea:focus-visible {
 .glass-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 42%, rgba(112,45,59,0.24) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.38),
+    transparent 42%,
+    rgba(112, 45, 59, 0.24) 100%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -486,13 +511,17 @@ textarea:focus-visible {
 }
 
 .badge-soft {
-  background: rgba(255,255,255,0.44);
+  background: rgba(255, 255, 255, 0.44);
   color: var(--ink);
   backdrop-filter: blur(12px);
 }
 
 .badge-strong {
-  background: linear-gradient(135deg, rgba(112,45,59,0.8), rgba(163,61,69,0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(112, 45, 59, 0.8),
+    rgba(163, 61, 69, 0.9)
+  );
   color: white;
 }
 
@@ -567,7 +596,7 @@ textarea:focus-visible {
   padding: 0.4rem 0.5rem 0.4rem 0.8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   color: var(--muted);
   font-size: 0.76rem;
   letter-spacing: 0.08em;
@@ -616,7 +645,11 @@ textarea:focus-visible {
   position: relative;
   display: block;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(246, 200, 182, 0.7), rgba(216, 176, 106, 0.5));
+  background: linear-gradient(
+    135deg,
+    rgba(246, 200, 182, 0.7),
+    rgba(216, 176, 106, 0.5)
+  );
   border-radius: 1.5rem;
 }
 
@@ -646,7 +679,11 @@ textarea:focus-visible {
   place-items: center;
   gap: 0.3rem;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.05)
+  );
   color: var(--muted);
   text-align: center;
 }
@@ -698,7 +735,7 @@ textarea:focus-visible {
   display: inline-block;
   width: 28px;
   height: 28px;
-  border: 2px solid rgba(112,45,59,0.2);
+  border: 2px solid rgba(112, 45, 59, 0.2);
   border-top-color: var(--burgundy);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
@@ -755,7 +792,7 @@ textarea:focus-visible {
   padding: 0.75rem;
   border: 1px solid var(--line);
   border-radius: 1.4rem;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   scroll-snap-align: start;
 }
 
@@ -790,9 +827,9 @@ textarea:focus-visible {
   justify-self: start;
   margin-top: 0.2rem;
   padding: 0.6rem 0.9rem;
-  border: 1px solid rgba(112,45,59,0.16);
+  border: 1px solid rgba(112, 45, 59, 0.16);
   border-radius: 999px;
-  background: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.22);
   color: var(--ink);
   cursor: pointer;
 }
@@ -822,8 +859,16 @@ textarea:focus-visible {
   padding: 0.65rem;
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(circle at 75% 20%, rgba(242, 123, 99, 0.2), transparent 45%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(217, 199, 183, 0.42));
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(242, 123, 99, 0.2),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.28),
+      rgba(217, 199, 183, 0.42)
+    );
   box-shadow: var(--shadow);
 }
 
@@ -874,7 +919,7 @@ textarea:focus-visible {
 
 .contact-detail a {
   color: var(--ink);
-  text-decoration-color: rgba(112,45,59,0.32);
+  text-decoration-color: rgba(112, 45, 59, 0.32);
   text-underline-offset: 4px;
 }
 
@@ -909,11 +954,11 @@ textarea:focus-visible {
   border: 0;
   border-radius: 1.5rem;
   background: rgba(247, 241, 236, 0.95);
-  box-shadow: 0 28px 80px rgba(43,32,31,0.22);
+  box-shadow: 0 28px 80px rgba(43, 32, 31, 0.22);
 }
 
 .gallery-dialog::backdrop {
-  background: rgba(39,22,23,0.6);
+  background: rgba(39, 22, 23, 0.6);
   backdrop-filter: blur(8px);
 }
 
@@ -936,9 +981,9 @@ textarea:focus-visible {
 .gallery-control {
   min-height: 40px;
   padding: 0.55rem 0.8rem;
-  border: 1px solid rgba(112,45,59,0.12);
+  border: 1px solid rgba(112, 45, 59, 0.12);
   border-radius: 999px;
-  background: rgba(255,255,255,0.28);
+  background: rgba(255, 255, 255, 0.28);
   color: var(--ink);
   cursor: pointer;
 }
@@ -1008,9 +1053,9 @@ textarea:focus-visible {
   width: 100%;
   min-height: 46px;
   padding: 0.7rem 0.8rem;
-  border: 1px solid rgba(112,45,59,0.14);
+  border: 1px solid rgba(112, 45, 59, 0.14);
   border-radius: 0.9rem;
-  background: rgba(255,255,255,0.36);
+  background: rgba(255, 255, 255, 0.36);
   color: var(--ink);
 }
 
@@ -1024,8 +1069,8 @@ textarea:focus-visible {
 .form-field select:focus,
 .form-field textarea:focus,
 .order-result textarea:focus {
-  border-color: rgba(112,45,59,0.45);
-  outline: 2px solid rgba(112,45,59,0.12);
+  border-color: rgba(112, 45, 59, 0.45);
+  outline: 2px solid rgba(112, 45, 59, 0.12);
 }
 
 .form-field-wide {
@@ -1034,7 +1079,7 @@ textarea:focus-visible {
 
 .address-fields {
   margin: 0 0 1rem;
-  border: 1px solid rgba(112,45,59,0.14);
+  border: 1px solid rgba(112, 45, 59, 0.14);
   border-radius: 1.1rem;
   padding: 1rem;
 }
@@ -1082,25 +1127,26 @@ textarea:focus-visible {
 }
 
 .button-whatsapp {
-  background: rgba(242,123,99,0.2);
+  background: rgba(242, 123, 99, 0.2);
   color: var(--ink);
 }
 
 .button-quiet {
-  border-color: rgba(112,45,59,0.12);
-  background: rgba(255,255,255,0.14);
+  border-color: rgba(112, 45, 59, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   color: var(--ink);
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1100px) {
   .product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
 }
 
 @media (max-width: 900px) {
@@ -1128,13 +1174,13 @@ textarea:focus-visible {
   }
 
   .menu-toggle {
-    display: inline-flex;
+    display: none;
     align-items: center;
     justify-content: center;
     min-height: 42px;
     padding: 0.3rem 0.7rem;
     border-radius: 999px;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
   }
 
   .search-section {
@@ -1239,7 +1285,9 @@ textarea:focus-visible {
     scroll-behavior: auto;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -1261,7 +1309,11 @@ textarea:focus-visible {
 .mini-button {
   border-color: rgba(255, 255, 255, 0.72);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.22)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.74),
+      rgba(255, 255, 255, 0.22)
+    ),
     rgba(238, 222, 220, 0.2);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
@@ -1274,7 +1326,12 @@ textarea:focus-visible {
 .glass-panel {
   border-color: rgba(255, 255, 255, 0.68);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.12) 48%, rgba(201, 140, 145, 0.12)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(255, 255, 255, 0.12) 48%,
+      rgba(201, 140, 145, 0.12)
+    ),
     rgba(230, 207, 204, 0.2);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.92),
@@ -1294,7 +1351,9 @@ textarea:focus-visible {
 .badge-soft {
   border: 1px solid rgba(255, 255, 255, 0.78);
   background: rgba(255, 252, 251, 0.58);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 6px 18px rgba(59, 32, 39, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 6px 18px rgba(59, 32, 39, 0.08);
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
 }
@@ -1303,7 +1362,11 @@ textarea:focus-visible {
 .social-image {
   border-color: rgba(255, 255, 255, 0.62);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.16)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52),
+      rgba(255, 255, 255, 0.16)
+    ),
     rgba(235, 218, 216, 0.23);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.84),
@@ -1315,7 +1378,11 @@ textarea:focus-visible {
 .gallery-dialog {
   border: 1px solid rgba(255, 255, 255, 0.72);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(248, 238, 236, 0.72)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(248, 238, 236, 0.72)
+    ),
     var(--paper);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.94),
@@ -1330,7 +1397,9 @@ textarea:focus-visible {
   -webkit-backdrop-filter: blur(14px) saturate(125%);
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
   .site-header,
   .catalog-search,
   .search-section,
@@ -1364,7 +1433,12 @@ textarea:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 999px;
   background:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.26) 48%, rgba(243, 213, 215, 0.3)),
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(255, 255, 255, 0.26) 48%,
+      rgba(243, 213, 215, 0.3)
+    ),
     rgba(247, 241, 236, 0.42);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
@@ -1400,7 +1474,9 @@ textarea:focus-visible {
 .primary-navigation a:focus-visible {
   color: var(--deep-burgundy);
   background: rgba(255, 255, 255, 0.48);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px rgba(59, 32, 39, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 14px rgba(59, 32, 39, 0.08);
   transform: none;
 }
 
@@ -1422,7 +1498,7 @@ textarea:focus-visible {
 }
 
 .menu-toggle {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
@@ -1470,8 +1546,17 @@ textarea:focus-visible {
   overflow: hidden;
   border-color: rgba(255, 255, 255, 0.78);
   background:
-    radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.9), transparent 42%),
-    linear-gradient(125deg, rgba(255, 255, 255, 0.58), rgba(243, 213, 215, 0.26) 55%, rgba(242, 123, 99, 0.12));
+    radial-gradient(
+      ellipse at 12% 0%,
+      rgba(255, 255, 255, 0.9),
+      transparent 42%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(243, 213, 215, 0.26) 55%,
+      rgba(242, 123, 99, 0.12)
+    );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
     inset 0 -1px 0 rgba(112, 45, 59, 0.06),
@@ -1483,7 +1568,11 @@ textarea:focus-visible {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(125deg, rgba(255, 255, 255, 0.44), transparent 34%);
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.44),
+    transparent 34%
+  );
   content: "";
   pointer-events: none;
 }
@@ -1538,7 +1627,11 @@ textarea:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: var(--radius-md);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.1)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.44),
+      rgba(255, 255, 255, 0.1)
+    ),
     rgba(235, 218, 216, 0.14);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.76),
@@ -1561,8 +1654,16 @@ textarea:focus-visible {
 .for-you-image {
   border: 1px solid rgba(255, 255, 255, 0.42);
   background:
-    radial-gradient(circle at 75% 12%, rgba(255, 255, 255, 0.62), transparent 38%),
-    linear-gradient(145deg, rgba(246, 200, 182, 0.62), rgba(216, 176, 106, 0.38));
+    radial-gradient(
+      circle at 75% 12%,
+      rgba(255, 255, 255, 0.62),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(246, 200, 182, 0.62),
+      rgba(216, 176, 106, 0.38)
+    );
 }
 
 .product-image-frame img,
@@ -1575,7 +1676,9 @@ textarea:focus-visible {
 .gallery-control {
   border-color: rgba(255, 255, 255, 0.84);
   background: rgba(255, 255, 255, 0.46);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 6px 18px rgba(59, 32, 39, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 6px 18px rgba(59, 32, 39, 0.08);
   backdrop-filter: saturate(180%) blur(16px);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
 }
@@ -1625,7 +1728,9 @@ textarea:focus-visible {
   }
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
   .header-inner,
   .primary-navigation,
   .catalog-search,
@@ -1824,7 +1929,11 @@ textarea:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 20px;
   background:
-    linear-gradient(120deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.28)),
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(255, 255, 255, 0.28)
+    ),
     rgba(247, 241, 236, 0.26);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.92),
