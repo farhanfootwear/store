@@ -47,6 +47,10 @@ const elements = {
   forYouGrid: document.querySelector("#for-you-grid"),
   refreshForYou: document.querySelector("#refresh-for-you"),
   heroImage: document.querySelector("#hero-image"),
+  heroProductDetails: document.querySelector("#hero-product-details"),
+  heroProductName: document.querySelector("#hero-product-name"),
+  heroProductPrice: document.querySelector("#hero-product-price"),
+  heroProductView: document.querySelector("#hero-product-view"),
 };
 
 let products = [];
@@ -320,10 +324,27 @@ function selectForYouProducts() {
 
 function renderHeroProduct() {
   const heroProduct = products.find((product) => product.id === 0);
-  if (!heroProduct) return;
+  if (!heroProduct) {
+    elements.heroProductDetails.hidden = true;
+    return;
+  }
 
   elements.heroImage.src = `./${resolveImagePath(heroProduct.imageIds[0])}`;
   elements.heroImage.alt = `${heroProduct.name}, featured product`;
+  elements.heroProductDetails.hidden = false;
+  elements.heroProductName.textContent = heroProduct.name;
+  elements.heroProductPrice.textContent = priceFormatter.format(
+    heroProduct.price,
+  );
+  elements.heroImage.closest(".hero-shot").onclick = () =>
+    openOrderRequest(heroProduct);
+  elements.heroImage
+    .closest(".hero-shot")
+    .setAttribute(
+      "aria-label",
+      `Create an order request for ${heroProduct.name}`,
+    );
+  elements.heroProductView.onclick = () => openOrderRequest(heroProduct);
 }
 
 function renderForYou() {
@@ -404,8 +425,12 @@ function moveGalleryImage(direction) {
 function openOrderForm() {
   if (!activeGalleryProduct) return;
 
-  activeOrderProduct = activeGalleryProduct;
-  elements.dialog.close();
+  openOrderRequest(activeGalleryProduct);
+}
+
+function openOrderRequest(product) {
+  activeOrderProduct = product;
+  if (elements.dialog.open) elements.dialog.close();
   elements.orderForm.reset();
   elements.orderForm.hidden = false;
   elements.orderMessage.value = "";

@@ -29,7 +29,8 @@
             aria-expanded="false"
             aria-controls="primary-navigation"
           >
-            <span>Menu</span>
+            <span>Explore</span>
+            <span class="menu-toggle-icon" aria-hidden="true">⌄</span>
           </button>
 
           <nav
@@ -37,19 +38,24 @@
             id="primary-navigation"
             aria-label="Main navigation"
           >
-            <a href="#home">Home</a>
+            <a class="featured-nav-link" href="#featured-product"
+              >Featured product</a
+            >
             <a href="#search">Search</a>
             <a href="#catalog">Shop</a>
             <a href="#for-you">For You</a>
             <a href="#instagram">Instagram</a>
             <a href="#contact">Contact</a>
           </nav>
-
         </div>
       </header>
 
       <main>
-        <section class="hero" aria-labelledby="hero-title">
+        <section
+          class="hero"
+          id="featured-product"
+          aria-labelledby="hero-title"
+        >
           <div class="hero-pattern pattern-1" aria-hidden="true">
             <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
               <path d="M38 462C144 334 188 278 258 180c39-55 88-95 168-136" />
@@ -73,7 +79,7 @@
               <a
                 class="button button-secondary"
                 id="instagram-link"
-                href="#instagram"
+                href="https://instagram.com/instafarhan73"
                 target="_blank"
                 rel="noopener noreferrer"
                 >@instafarhan73</a
@@ -89,7 +95,12 @@
                 <span class="badge badge-soft">New season</span>
                 <span class="badge badge-strong">Made for motion</span>
               </div>
-              <div class="hero-shot" id="hero-image-wrap">
+              <button
+                class="hero-shot"
+                id="hero-image-wrap"
+                type="button"
+                aria-label="Request an order for the featured pair"
+              >
                 <img
                   id="hero-image"
                   src="./images/nb-fuelcell-orange.jpg"
@@ -98,18 +109,62 @@
                   height="760"
                   fetchpriority="high"
                 />
+              </button>
+              <div
+                class="hero-product-details"
+                id="hero-product-details"
+                hidden
+              >
+                <div>
+                  <h2 id="hero-product-name"></h2>
+                  <p id="hero-product-price"></p>
+                </div>
+                <button
+                  class="hero-product-view"
+                  id="hero-product-view"
+                  type="button"
+                >
+                  View details <span aria-hidden="true">↗</span>
+                </button>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="search-section" id="search" aria-labelledby="search-title">
+        <section
+          class="feature-section"
+          id="for-you"
+          aria-labelledby="for-you-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">For you</p>
+              <h2 id="for-you-title">A curated finish for your next pair.</h2>
+            </div>
+            <button
+              class="button button-chip"
+              id="refresh-for-you"
+              type="button"
+            >
+              Shuffle picks
+            </button>
+          </div>
+          <div class="for-you-grid" id="for-you-grid"></div>
+        </section>
+
+        <section
+          class="search-section"
+          id="search"
+          aria-labelledby="search-title"
+        >
           <div class="search-section-copy">
             <p class="eyebrow">Find your next pair</p>
             <h2 id="search-title">Search the collection.</h2>
           </div>
           <form class="catalog-search" role="search" id="search-form">
-            <label class="visually-hidden" for="product-search">Search products</label>
+            <label class="visually-hidden" for="product-search"
+              >Search products</label
+            >
             <span class="search-icon" aria-hidden="true"></span>
             <input
               id="product-search"
@@ -180,27 +235,6 @@
             aria-live="polite"
             aria-busy="true"
           ></div>
-        </section>
-
-        <section
-          class="feature-section"
-          id="for-you"
-          aria-labelledby="for-you-title"
-        >
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">For you</p>
-              <h2 id="for-you-title">A curated finish for your next pair.</h2>
-            </div>
-            <button
-              class="button button-chip"
-              id="refresh-for-you"
-              type="button"
-            >
-              Shuffle picks
-            </button>
-          </div>
-          <div class="for-you-grid" id="for-you-grid"></div>
         </section>
 
         <section
