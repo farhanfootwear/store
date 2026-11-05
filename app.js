@@ -9,6 +9,9 @@ const elements = {
   catalog: document.querySelector("#catalog"),
   grid: document.querySelector("#product-grid"),
   searchForm: document.querySelector("#search-form"),
+  searchSection: document.querySelector("#search"),
+  searchAnchor: document.querySelector("#search-anchor"),
+  searchSpacer: document.querySelector("#search-spacer"),
   search: document.querySelector("#product-search"),
   clearSearch: document.querySelector("#clear-search"),
   sort: document.querySelector("#sort-products"),
@@ -259,6 +262,41 @@ function renderCatalog() {
     elements.empty.textContent =
       "No shoes match your search. Try a different search.";
   }
+}
+
+function updateSearchDocking() {
+  const searchRect = elements.searchSection.getBoundingClientRect();
+  const bottomOffset =
+    Number.parseFloat(getComputedStyle(elements.searchSection).bottom) || 0;
+  const dockedTop = window.innerHeight - bottomOffset - searchRect.height;
+  const shouldDock =
+    elements.searchAnchor.getBoundingClientRect().top > dockedTop;
+  const isDocked = elements.searchSection.classList.contains("is-bottom-docked");
+
+  if (shouldDock === isDocked) {
+    if (shouldDock) {
+      elements.searchSpacer.style.height = `${searchRect.height}px`;
+    }
+    return;
+  }
+
+  if (shouldDock) {
+    elements.searchSpacer.style.height = `${searchRect.height}px`;
+    elements.searchSection.classList.add("is-bottom-docked");
+  } else {
+    elements.searchSection.classList.remove("is-bottom-docked");
+    elements.searchSpacer.style.height = "0px";
+  }
+}
+
+let searchDockingFrame = 0;
+
+function scheduleSearchDockingUpdate() {
+  if (searchDockingFrame) return;
+  searchDockingFrame = window.requestAnimationFrame(() => {
+    searchDockingFrame = 0;
+    updateSearchDocking();
+  });
 }
 
 function scrollToCatalog() {
@@ -717,6 +755,12 @@ function setupGlassShader() {
 }
 
 function bindUi() {
+  window.addEventListener("scroll", scheduleSearchDockingUpdate, {
+    passive: true,
+  });
+  window.addEventListener("resize", scheduleSearchDockingUpdate);
+  updateSearchDocking();
+
   elements.search.addEventListener("input", () => {
     renderCatalog();
     const hasSearch = elements.search.value.trim().length > 0;

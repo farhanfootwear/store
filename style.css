@@ -1550,7 +1550,9 @@ textarea:focus-visible {
 }
 
 .search-section {
-  position: relative;
+  position: sticky;
+  top: calc(6.1rem + env(safe-area-inset-top, 0px));
+  z-index: 20;
   overflow: hidden;
   border-color: rgba(255, 255, 255, 0.78);
   background:
@@ -1569,6 +1571,18 @@ textarea:focus-visible {
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
     inset 0 -1px 0 rgba(112, 45, 59, 0.06),
     0 24px 60px rgba(59, 32, 39, 0.1);
+}
+
+.search-section.is-bottom-docked {
+  position: fixed;
+  top: auto;
+  right: auto;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  width: min(100% - 2rem, var(--content-width));
+  margin: 0;
+  transform: translateX(-50%);
+  z-index: 40;
 }
 
 .search-section::before,
@@ -1712,6 +1726,10 @@ textarea:focus-visible {
 @media (max-width: 700px) {
   .site-header {
     padding: 0.55rem 0;
+  }
+
+  .search-section {
+    top: calc(5.1rem + env(safe-area-inset-top, 0px));
   }
 
   .header-inner {
