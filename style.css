@@ -1558,7 +1558,7 @@ textarea:focus-visible {
 
 .search-section {
   position: sticky;
-  top: calc(9.1rem + env(safe-area-inset-top, 0px));
+  top: 9.1rem;
   z-index: 20;
   overflow: hidden;
   border-color: rgba(255, 255, 255, 0.78);
@@ -1736,7 +1736,7 @@ textarea:focus-visible {
   }
 
   .search-section {
-    top: calc(8.1rem + env(safe-area-inset-top, 0px));
+    top: 8.1rem;
   }
 
   .header-inner {
