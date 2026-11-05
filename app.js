@@ -48,7 +48,6 @@ const elements = {
   refreshForYou: document.querySelector("#refresh-for-you"),
   heroImage: document.querySelector("#hero-image"),
   heroProductDetails: document.querySelector("#hero-product-details"),
-  heroProductName: document.querySelector("#hero-product-name"),
   heroProductPrice: document.querySelector("#hero-product-price"),
   heroProductView: document.querySelector("#hero-product-view"),
 };
@@ -152,13 +151,13 @@ function resolveImagePath(imageId) {
   return `images/${encodeURIComponent(imageId)}.jpg`;
 }
 
-function createProductImage(imageId, productName, { eager = false } = {}) {
+function createProductImage(imageId, { eager = false } = {}) {
   const frame = document.createElement("span");
   frame.className = "product-image-frame";
 
   const img = document.createElement("img");
   img.src = resolveImagePath(imageId);
-  img.alt = `${productName}, product image`;
+  img.alt = "Footwear product";
   img.loading = eager ? "eager" : "lazy";
   img.decoding = "async";
   img.width = 800;
@@ -168,16 +167,11 @@ function createProductImage(imageId, productName, { eager = false } = {}) {
   placeholder.className = "image-placeholder";
   placeholder.hidden = true;
   placeholder.setAttribute("role", "img");
-  placeholder.setAttribute(
-    "aria-label",
-    `Product image unavailable for ${productName}`,
-  );
+  placeholder.setAttribute("aria-label", "Product image unavailable");
 
-  const title = document.createElement("strong");
-  title.textContent = productName;
   const message = document.createElement("span");
   message.textContent = "Product photo unavailable";
-  placeholder.append(title, message);
+  placeholder.append(message);
 
   img.addEventListener(
     "error",
@@ -219,8 +213,8 @@ function renderProducts(list, grid, onOpenGallery) {
     const imageButton = document.createElement("button");
     imageButton.type = "button";
     imageButton.className = "product-image-button";
-    imageButton.setAttribute("aria-label", `View product: ${product.name}`);
-    imageButton.append(createProductImage(product.imageIds[0], product.name));
+    imageButton.setAttribute("aria-label", "View product images");
+    imageButton.append(createProductImage(product.imageIds[0]));
     imageButton.addEventListener("click", () => onOpenGallery(product));
 
     const meta = document.createElement("div");
@@ -235,15 +229,11 @@ function renderProducts(list, grid, onOpenGallery) {
 
     meta.append(count);
 
-    const name = document.createElement("h3");
-    name.className = "product-name";
-    name.textContent = product.name;
-
     const price = document.createElement("p");
     price.className = "product-price";
     price.textContent = priceFormatter.format(product.price);
 
-    card.append(imageButton, meta, name, price);
+    card.append(imageButton, meta, price);
     fragment.append(card);
   });
 
@@ -267,7 +257,7 @@ function renderCatalog() {
       "The collection is being prepared. Please check back soon.";
   } else if (visible.length === 0) {
     elements.empty.textContent =
-      "No shoes match your search. Try another name.";
+      "No shoes match your search. Try a different search.";
   }
 }
 
@@ -330,9 +320,8 @@ function renderHeroProduct() {
   }
 
   elements.heroImage.src = `./${resolveImagePath(heroProduct.imageIds[0])}`;
-  elements.heroImage.alt = `${heroProduct.name}, featured product`;
+  elements.heroImage.alt = "Featured footwear";
   elements.heroProductDetails.hidden = false;
-  elements.heroProductName.textContent = heroProduct.name;
   elements.heroProductPrice.textContent = priceFormatter.format(
     heroProduct.price,
   );
@@ -342,7 +331,7 @@ function renderHeroProduct() {
     .closest(".hero-shot")
     .setAttribute(
       "aria-label",
-      `Create an order request for ${heroProduct.name}`,
+      "Create an order request for the featured pair",
     );
   elements.heroProductView.onclick = () => openOrderRequest(heroProduct);
 }
@@ -364,15 +353,12 @@ function renderForYou() {
     const media = document.createElement("button");
     media.type = "button";
     media.className = "for-you-image";
-    media.setAttribute("aria-label", `Open gallery for ${product.name}`);
-    media.append(createProductImage(product.imageIds[0], product.name));
+    media.setAttribute("aria-label", "Open product image gallery");
+    media.append(createProductImage(product.imageIds[0]));
     media.addEventListener("click", () => openGallery(product));
 
     const info = document.createElement("div");
     info.className = "for-you-meta";
-
-    const title = document.createElement("h3");
-    title.textContent = product.name;
 
     const price = document.createElement("p");
     price.textContent = priceFormatter.format(product.price);
@@ -383,7 +369,7 @@ function renderForYou() {
     action.textContent = "Quick view";
     action.addEventListener("click", () => openGallery(product));
 
-    info.append(title, price, action);
+    info.append(price, action);
     card.append(media, info);
     fragment.append(card);
   });
@@ -394,7 +380,6 @@ function renderForYou() {
 function openGallery(product) {
   activeGalleryProduct = product;
   activeImageIndex = 0;
-  elements.galleryTitle.textContent = product.name;
   updateGalleryImage();
   if (!elements.dialog.open) {
     elements.dialog.showModal();
@@ -403,9 +388,9 @@ function openGallery(product) {
 
 function updateGalleryImage() {
   if (!activeGalleryProduct) return;
-  const { imageIds, name } = activeGalleryProduct;
+  const { imageIds } = activeGalleryProduct;
   elements.galleryImage.replaceChildren(
-    createProductImage(imageIds[activeImageIndex], name, { eager: true }),
+    createProductImage(imageIds[activeImageIndex], { eager: true }),
   );
   elements.galleryCount.textContent = `Image ${activeImageIndex + 1} of ${imageIds.length}`;
 
@@ -437,7 +422,7 @@ function openOrderRequest(product) {
   elements.orderStatus.textContent = "";
   elements.orderResult.hidden = true;
   elements.openWhatsApp.hidden = true;
-  elements.orderProduct.textContent = `${activeOrderProduct.name} · ${priceFormatter.format(activeOrderProduct.price)}`;
+  elements.orderProduct.textContent = `Selected pair · ${priceFormatter.format(activeOrderProduct.price)}`;
   elements.orderDialog.showModal();
 }
 

@@ -117,6 +117,34 @@ textarea:focus-visible {
   min-height: 100vh;
 }
 
+.top-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  height: 48px;
+  color: var(--muted);
+}
+
+.top-ribbon p {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.top-ribbon-rule {
+  width: clamp(2.5rem, 10vw, 8rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.top-ribbon-rule:last-child {
+  transform: rotate(180deg);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -709,14 +737,6 @@ textarea:focus-visible {
   text-transform: uppercase;
 }
 
-.product-name {
-  margin: 0.4rem 0 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.6rem;
-  line-height: 1.1;
-  font-weight: 500;
-}
-
 .product-price {
   margin: 0.55rem 0 0;
   color: var(--burgundy);
@@ -807,14 +827,6 @@ textarea:focus-visible {
 .for-you-meta {
   display: grid;
   gap: 0.35rem;
-}
-
-.for-you-meta h3 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.1rem;
-  line-height: 1.2;
-  font-weight: 500;
 }
 
 .for-you-meta p {
@@ -1242,10 +1254,6 @@ textarea:focus-visible {
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem 0.65rem;
-  }
-
-  .product-name {
-    font-size: 1.2rem;
   }
 
   .product-card {
