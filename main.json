@@ -5,27 +5,14 @@
     "contact": "+918840707090",
     "insta-id": "instafarhan73"
   },
-
   "products": [
     {
       "id": 0,
       "name": "New Balance Fuel Cell Orange",
       "price": 2399,
-      "image-id": ["nb-fuelcell-orange"]
-    },
-
-    {
-      "id": 1,
-      "name": "New Balance Fuel Cell Green",
-      "price": 2399,
-      "image-id": ["nb-fuelcell-green"]
-    },
-
-    {
-      "id": 2,
-      "name": "New Balance Fuel Cell White",
-      "price": 2399,
-      "image-id": ["nb-fuelcell-white"]
+      "image-id": [
+        "nb-fuelcell-orange"
+      ]
     }
   ]
 }
