@@ -13,6 +13,14 @@
       "image-id": [
         "nb-fuelcell-orange"
       ]
+    },
+    {
+      "id": 1,
+      "name": "Guide 10 White Red",
+      "price": 1699,
+      "image-id": [
+        "ed0cf143ea64a1e06c098db84483e07b"
+      ]
     }
   ]
 }
